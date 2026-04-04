@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Finance Management System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <div data-component="components/navbar.html"></div>
+    <!-- main -->
+    <div class="main container">
+      <!-- Hero Section -->
+      <div
+        class="heroSection d-flex flex-column align-items-center justify-content-center text-center p-5"
+      >
+        <p class="fs-1 mb-0">Welcome to PFMS</p>
+        <p class="fw-bold fs-2">Personal Finance Management System</p>
+        <p class="fs-4">
+          Track income, manage expenses, and analyze your financial habits in
+          one place.
+        </p>
+
+        <a href="#demo" class="btn btn-outline-light mt-3 btn-lg">Watch Demo</a>
+      </div>
+
+      <!-- Features Section -->
+
+      <div class="featureSection mt-5" id="features">
+        <div class="d-flex justify-content-center mb-5">
+          <span class="fs-3">Features</span>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-3">
+            <div class="card h-100 border-secondary">
+              <div class="card-content">
+                <div class="card-body text-center m-0 p-2">
+                  <i class="bi bi-currency-rupee fs-1 mb-1"></i>
+                  <h5 class="card-title mb-3">Transaction Management</h5>
+                  <p class="card-text mb-3">
+                    Add and manage your income and expenses easily.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-secondary">
+              <div class="card-content">
+                <div class="card-body text-center m-0 p-2">
+                  <i class="bi bi-card-checklist fs-1 mb-1"></i>
+                  <h5 class="card-title mb-3">Budget Tracking</h5>
+                  <p class="card-text mb-3">Monitor your expenses</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-secondary">
+              <div class="card-content">
+                <div class="card-body text-center m-0 p-2">
+                  <i class="bi bi-graph-up-arrow fs-1 mb-1"></i>
+                  <h5 class="card-title mb-3">Analytics Dashboard</h5>
+                  <p class="card-text mb-3">
+                    Analyze financial habits with charts.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card h-100 border-secondary">
+              <div class="card-content">
+                <div class="card-body text-center m-0 p-2">
+                  <i class="bi bi-box-arrow-in-right fs-4"></i>
+                  <i class="bi bi-lock fs-1 mb-1"></i>
+                  <i class="bi bi-database fs-4"></i>
+                  <h5 class="card-title mb-3">Secure Login</h5>
+                  <p class="card-text mb-3">
+                    Authentication system to protect your data.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo Section-->
+
+      <div
+        class="demoSection d-flex flex-column justify-content-center align-items-center"
+        id="demo"
+      >
+        <span class="fs-3 mb-4">Demo</span>
+        <div class="ratio ratio-16x9 w-100">
+          <iframe
+            src="https://www.youtube.com/embed/CJVe8JaW10o?si=-kIU8qFvX-sso9eg"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- About Section -->
+
+      <div class="aboutSection" id="about">
+        <div class="d-flex justify-content-center align-items-center">
+          <span class="fs-3 mb-4">About Us</span>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 pt-3 p-2">
+            <small class="text-uppercase fs-4">Welcome to our Journey</small>
+            <h1 class="mt-1 mb-3">
+              About our <span class="text-primary">PFMS</span>
+            </h1>
+            <p class="text-secondary" style="text-align: justify">
+              Personal Finance Management System (PFMS) helps individuals track
+              income, manage expenses, and understand their financial habits
+              through a simple and secure platform. By organizing financial data
+              and providing clear insights, PFMS enables users to make smarter
+              financial decisions and maintain better control over their
+              personal finances.
+            </p>
+          </div>
+
+          <div class="col-lg-6 text-center">
+            <img src="assets/about_img.jpg" class="img-fluid" alt="demoImg" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="contactSection" id="contact">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <form class="p-5 border rounded">
+              <div class="d-flex justify-content-center align-items-center">
+                <span class="fs-3 mb-4 text-primary">Contact Us</span>
+              </div>
+              <div class="my-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" class="form-control" />
+              </div>
+              <div class="my-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" />
+              </div>
+              <div class="my-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" id="subject" class="form-control" />
+              </div>
+              <div class="my-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  class="form-control"
+                  rows="4"
+                ></textarea>
+              </div>
+
+              <button class="btn btn-primary w-100 mt-3">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-component="components/footer.html"></div>
+
+    <script src="script.js"></script>
+    <script src="js/componentLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
