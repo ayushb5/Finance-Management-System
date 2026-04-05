@@ -12,8 +12,12 @@
     border-image: linear-gradient(to right, transparent, #444, transparent) 1;
 }
 
+.marginTopWithCoin {
+    height: 30vh;
+    cursor: url("assets/coin.cur") 16 16, auto;
+}
+
 .heroSection {
-    margin-top: 30vh !important;
     cursor: url("assets/coin.cur") 16 16, auto;
     background: linear-gradient(to bottom, #000, #0a0a0a);
 }
