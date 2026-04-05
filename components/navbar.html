@@ -69,7 +69,7 @@
           <input type="email" class="form-control" id="loginEmail" />
         </div>
         <div class="mb-2 w-75">
-          <label for="password" class="form-label">Password</label>
+          <label for="loginPassword" class="form-label">Password</label>
           <input type="password" class="form-control" id="loginPassword" />
         </div>
 
@@ -120,23 +120,29 @@
         class="modal-body d-flex flex-column p-3 justify-content-center align-items-center"
       >
         <div class="mb-2 w-75">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="Name" />
+          <label for="signupName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="signupName" />
+          <span class="text-danger" id="signupNameError"></span>
         </div>
         <div class="mb-2 w-75">
-          <label for="email" class="form-label">Email</label>
+          <label for="signupEmail" class="form-label">Email</label>
           <input type="email" class="form-control" id="signupEmail" />
+          <span class="text-danger" id="signupEmailError"></span>
         </div>
         <div class="mb-2 w-75">
           <label for="signupPassword" class="form-label">Password</label>
           <input type="password" class="form-control" id="signupPassword" />
+          <span class="text-danger" id="signupPassError"></span>
         </div>
         <div class="mb-2 w-75">
           <label for="confirmPass" class="form-label">Confirm Password</label>
           <input type="password" class="form-control" id="confirmPass" />
+          <span class="text-danger" id="cpError"></span>
         </div>
 
-        <button class="btn btn-primary my-4 w-50 mx-auto">Sign Up</button>
+        <button class="btn btn-primary my-4 w-50 mx-auto" id="signupBtn">
+          Sign Up
+        </button>
 
         <p class="mt-1 text-center">
           Already have an account?
