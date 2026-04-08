@@ -41,6 +41,7 @@
             class="btn btn-primary ms-2"
             data-bs-toggle="modal"
             data-bs-target="#login"
+            id="authBtn"
           >
             Login
           </button>
@@ -67,10 +68,12 @@
         <div class="mb-2 w-75">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control" id="loginEmail" />
+          <span class="text-danger" id="loginEmailError"></span>
         </div>
         <div class="mb-2 w-75">
           <label for="loginPassword" class="form-label">Password</label>
           <input type="password" class="form-control" id="loginPassword" />
+          <span class="text-danger" id="loginPassError"></span>
         </div>
 
         <div class="form-check w-75 mx-auto text-start mt-2">
@@ -88,7 +91,9 @@
           >
         </div>
 
-        <button class="btn btn-primary my-3 w-50 mx-auto">Login</button>
+        <button class="btn btn-primary my-3 w-50 mx-auto" id="loginBtn">
+          Login
+        </button>
 
         <p class="mt-1 text-center">
           Don't have an account?
