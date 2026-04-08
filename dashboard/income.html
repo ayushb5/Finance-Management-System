@@ -1,0 +1,127 @@
+<div class="container">
+  <div class="card w-auto">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h2>Income</h2>
+          <p>Track and manage your income sources</p>
+        </div>
+        <div class="col-lg-4">
+          <button
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#addIncome"
+          >
+            Add Income
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-4 g-4">
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">Total Income</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="total">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">This Month</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="currentMonth">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">Last Month</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="lastMonth">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">Income Sources</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-5" id="sources">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+
+<div class="modal fade bg-dark" id="addIncome">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="mx-auto">Add Income</h3>
+        <button
+          class="btn-close position-absolute end-0 me-3"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="source" class="form-label">Source Name</label>
+            <input type="text" class="form-control" id="sourceName" />
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="category" id="caregory" class="form-select">
+              <option>Select category</option>
+              <option value="Salary">Salary</option>
+              <option value="Gift">Gift</option>
+              <option value="Bonus">Bonus</option>
+              <option value="Freelance">Freelance</option>
+              <option value="Investment">Investment</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" class="form-control" id="amount" />
+          </div>
+          <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" />
+          </div>
+          <div class="mb-3 flex-column">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              class="form-control"
+            ></textarea>
+          </div>
+
+          <div class="mb-3 text-end">
+            <button class="btn btn-danger" data-bs-dismiss="modal">
+              Cancel
+            </button>
+            <button class="btn btn-success">Add Income</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

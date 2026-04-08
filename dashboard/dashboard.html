@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <!-- sidebar -->
+    <div class="sidebar">
+      <nav class="nav flex-column">
+        <a class="nav-link active" href="#" data-page="dashboardContent.html">
+          <span class="icon">
+            <i class="bi bi-grid"></i>
+          </span>
+          <span class="description">Dashboard</span>
+        </a>
+        <a class="nav-link" href="#" data-page="add-transaction.html">
+          <span class="icon">
+            <i class="bi bi-bank"></i>
+          </span>
+          <span class="description">Transaction</span>
+        </a>
+        <a class="nav-link" href="#" data-page="income.html">
+          <span class="icon">
+            <i class="bi bi-graph-up-arrow"></i>
+          </span>
+          <span class="description">Income</span>
+        </a>
+        <a class="nav-link" href="#" data-page="expenses.html">
+          <span class="icon">
+            <i class="bi bi-graph-down-arrow"></i>
+          </span>
+          <span class="description">Expenses</span>
+        </a>
+        <a class="nav-link" href="#" data-page="reports.html">
+          <span class="icon">
+            <i class="bi bi-pie-chart"></i>
+          </span>
+          <span class="description">Reports</span>
+        </a>
+        <hr />
+        <a class="nav-link" href="#" data-page="profile.html">
+          <span class="icon">
+            <i class="bi bi-person"></i>
+          </span>
+          <span class="description">Profile</span>
+        </a>
+        <hr />
+        <button class="w-50 btn btn-danger mx-auto mt-3 p-1">
+          <span class="icon">
+            <i class="bi bi-box-arrow-right"></i>
+          </span>
+          <span class="description">Logout</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- main -->
+    <main class="main-content" id="main-content"></main>
+    <!-- Toast -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div
+        id="toastElement"
+        class="toast align-items-center text-bg-success border-0"
+        role="alert"
+      >
+        <div class="d-flex">
+          <div class="toast-body"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+      </div>
+    </div>
+    <script src="../script.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
