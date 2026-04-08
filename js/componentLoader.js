@@ -1,3 +1,5 @@
+import { initAuth } from "./auth.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
   const components = document.querySelectorAll("[data-component]");
 
@@ -11,5 +13,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   await Promise.all(promises);
 
+  updateNavbar();
   initAuth();
 });
