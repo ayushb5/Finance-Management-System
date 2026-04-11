@@ -87,6 +87,13 @@
     overflow: hidden;
 }
 
+/* Table for income list */
+#tableContainer {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+
 @media(max-width:480px) {
     .sidebar {
         width: 60px;
