@@ -113,7 +113,7 @@ export function initAuth() {
         signupPassword: signupPassword.value.trim(),
       };
 
-      const users = await getUsers();
+      const users = await getData("users");
       const emailExists = users.find((user) => user.email === userData.email);
 
       if (emailExists) {
@@ -122,7 +122,7 @@ export function initAuth() {
         return;
       }
 
-      const result = await createUser(userData);
+      const result = await insertData("users", userData);
       if (result) {
         showToast("Account created successfully. Please log in.");
         handleSignUpReset();
@@ -229,7 +229,7 @@ export function initAuth() {
     e.preventDefault();
 
     if (loginValidate()) {
-      const users = await getUsers();
+      const users = await getData("users");
 
       const user = users.find(
         (u) =>
