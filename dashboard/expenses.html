@@ -1,0 +1,260 @@
+<div class="container">
+  <div class="card w-auto">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h2>Expenses</h2>
+          <p>Track and manage your expenses</p>
+        </div>
+        <div class="col-lg-4">
+          <button
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#addExpense"
+          >
+            Add Expense
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-4 g-4">
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">Total Expense</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="total">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">This Month</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="currentMonth">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">Last Month</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="lastMonth">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">Expense Sources</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-5" id="sources">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="text-center my-4 fw-semibold">📊 Monthly Expense Overview</h3>
+  <div class="card mt-4">
+    <div class="card-body text-center">
+      <!-- for Desktop -->
+      <div
+        class="d-none d-md-flex flex-wrap justify-content-center gap-2"
+        id="monthTabs"
+      >
+        <button class="btn btn-outline-primary month-btn" data-month="0">
+          Jan
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="1">
+          Feb
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="2">
+          Mar
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="3">
+          Apr
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="4">
+          May
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="5">
+          June
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="6">
+          July
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="7">
+          Aug
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="8">
+          Sept
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="9">
+          Oct
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="10">
+          Nov
+        </button>
+        <button class="btn btn-outline-primary month-btn" data-month="11">
+          Dec
+        </button>
+      </div>
+
+      <!-- for Mobile -->
+      <div class="d-md-none">
+        <select class="form-select" id="monthDropdown">
+          <option value="">Select Month</option>
+          <option value="0">Jan</option>
+          <option value="1">Feb</option>
+          <option value="2">Mar</option>
+          <option value="3">Apr</option>
+          <option value="4">May</option>
+          <option value="5">June</option>
+          <option value="6">July</option>
+          <option value="7">Aug</option>
+          <option value="8">Sept</option>
+          <option value="9">Oct</option>
+          <option value="10">Nov</option>
+          <option value="11">Dec</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <div class="table-responsive" id="tableContainer">
+        <table class="table table-bordered text-center">
+          <thead class="table-light">
+            <tr>
+              <th>S.No</th>
+              <th>Source</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="expenseTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for adding expense-->
+
+<div class="modal fade bg-dark" id="addExpense">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="mx-auto">Add Expense</h3>
+        <button
+          class="btn-close position-absolute end-0 me-3"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="sourceName" class="form-label">Source Name</label>
+            <input type="text" class="form-control" id="sourceName" />
+            <small class="text-danger" id="sourceError"></small>
+          </div>
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="category" id="category" class="form-select">
+              <option value="" disabled selected>Select category</option>
+              <option value="Food">Food</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Household">Household</option>
+              <option value="Bills & Recharge">Bills & Recharge</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Health">Health</option>
+              <option value="Education">Education</option>
+              <option value="Social Work">Social Work</option>
+              <option value="Other">Other</option>
+            </select>
+            <small class="text-danger" id="categoryError"></small>
+          </div>
+
+          <div class="mb-3 d-none">
+            <label for="otherCategory">Custom category</label>
+            <input type="text" class="form-control" id="customCategory" />
+            <small class="text-danger" id="custCatError"></small>
+          </div>
+
+          <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" class="form-control" id="amount" />
+            <small class="text-danger" id="amountError"></small>
+          </div>
+          <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" />
+            <small class="text-danger" id="dateError"></small>
+          </div>
+          <div class="mb-3 flex-column">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              class="form-control"
+            ></textarea>
+            <small class="text-danger" id="descError"></small>
+          </div>
+
+          <div class="mb-3 text-end">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              id="cancelExpenseBtn"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-success" id="addExpenseBtn">
+              Add Expense
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for delete confirmation -->
+
+<div class="modal fade bg-dark" id="confirmDeletion">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="fs-4 modal-title mx-auto">Confirmation</span>
+        <button
+          class="btn-close position-absolute end-0 me-3"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <span class="fs-4 text-center"
+          >Are you sure you want to delete this record?</span
+        >
+      </div>
+      <div class="d-flex justify-content-center gap-2 pb-3">
+        <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-success" id="confirmDeleteBtn">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
