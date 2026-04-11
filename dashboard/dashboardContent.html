@@ -1,8 +1,64 @@
-<div>
-  <h1>Responsive main</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel earum
-    voluptatum voluptatem molestias nihil placeat veritatis laboriosam eos,
-    aliquid optio.
-  </p>
+<div class="container">
+  <div class="badgeContainer text-center">
+    <span class="badge rounded-pill bg-primary fs-3"
+      >Finance Summary Dashboard</span
+    >
+  </div>
+
+  <div class="row my-4 g-4">
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">Total Income</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="totalIncome">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">Total Expense</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="totalExpense">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">Total Balance</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="totalBalance">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <span class="card-title">This Month</span>
+        </div>
+        <div class="card-body text-center">
+          <span class="fs-4">₹</span>
+          <span class="fs-5" id="thisMonth">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-header text-center">Expense Categories</div>
+    <div
+      class="card-body d-flex justify-content-center align-items-center"
+      style="height: 300px"
+    >
+      <canvas id="barChart"></canvas>
+    </div>
+  </div>
 </div>
