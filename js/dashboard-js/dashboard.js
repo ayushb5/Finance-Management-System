@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   checkAuth();
+  applyThemeGlobal();
   handleSidebarNav();
   loadDefaultPage();
 });
@@ -41,6 +42,9 @@ function handleSidebarNav() {
             if (page.includes("dashboardContent")) {
               initDashboard();
             }
+            if (page.includes("reports")) {
+              initReport();
+            }
           });
       }
 
@@ -74,11 +78,15 @@ function loadDefaultPage() {
           if (page.includes("dashboardContent")) {
             initDashboard();
           }
+          if (page.includes("reports")) {
+            initReport();
+          }
         });
     }
   }
 }
 
+// PROFILE
 function loadProfile() {
   const firstLetter = document.getElementById("firstLetter");
   const profileName = document.getElementById("profileName");
@@ -94,6 +102,18 @@ function loadProfile() {
 
   if (editName) editName.value = user.name;
   if (editEmail) editEmail.value = user.email;
+
+  const switchTheme = document.getElementById("switchTheme");
+  if (switchTheme) {
+    switchTheme.checked = (user.theme || "dark") === "light";
+    switchTheme.onchange = handleTheme;
+  }
+
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.onclick = handleLogout;
+  }
+  document.getElementById("confirmDeleteAccount").onclick = handleDeleteAccount;
 }
 
 async function editProfile() {
@@ -270,4 +290,73 @@ function handleChangePassReset() {
   currentPassError.innerText = "";
   newPassError.innerText = "";
   confirmNewPassError.innerText = "";
+}
+
+async function handleTheme() {
+  const switchTheme = document.getElementById("switchTheme");
+  if (!switchTheme) return;
+
+  const theme = switchTheme.checked ? "light" : "dark";
+
+  // Apply theme
+  document.documentElement.setAttribute("data-bs-theme", theme);
+
+  try {
+    const updatedUser = await updateData("users", user.id, {
+      ...user,
+      theme: theme,
+    });
+
+    user = updatedUser;
+
+    localStorage.setItem("loggedUser", JSON.stringify(updatedUser));
+    sessionStorage.setItem("loggedUser", JSON.stringify(updatedUser));
+  } catch (err) {
+    console.log("Theme auto-save failed");
+  }
+}
+
+async function applyThemeGlobal() {
+  if (!user) return;
+
+  try {
+    const freshUser = await getData(`users/${user.id}`);
+    user = freshUser;
+
+    localStorage.setItem("loggedUser", JSON.stringify(freshUser));
+    sessionStorage.setItem("loggedUser", JSON.stringify(freshUser));
+
+    const theme = user.theme || "dark";
+
+    document.documentElement.setAttribute("data-bs-theme", theme);
+  } catch (err) {
+    console.log("Theme load failed");
+  }
+}
+
+async function handleDeleteAccount() {
+  try {
+    await deleteData("users", user.id);
+
+    localStorage.removeItem("loggedUser");
+    sessionStorage.removeItem("loggedUser");
+
+    showToast("Account deleted successfully", "success");
+    setTimeout(() => {
+      window.location.href = "../index.html";
+    }, 800);
+  } catch (err) {
+    console.log("Delete failed", err);
+  }
+}
+
+function handleLogout() {
+  localStorage.removeItem("loggedUser");
+  sessionStorage.removeItem("loggedUser");
+
+  showToast("Logged out successfully", "success");
+
+  setTimeout(() => {
+    window.location.href = "../index.html";
+  }, 800);
 }
