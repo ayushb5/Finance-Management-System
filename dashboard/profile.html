@@ -15,9 +15,29 @@
         <span id="profileName"></span>
       </div>
 
-      <div class="d-flex gap-2">
+      <div class="d-flex gap-2 mb-3">
         <strong>Email:</strong>
         <span id="profileEmail"></span>
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center gap-3 mt-3">
+        <i class="bi bi-moon"></i>
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="switchTheme" />
+        </div>
+
+        <i class="bi bi-sun"></i>
+      </div>
+
+      <div class="mt-3 text-center">
+        <button
+          class="btn btn-outline-danger"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteAccountModal"
+        >
+          Delete Account
+        </button>
       </div>
     </div>
   </div>
@@ -113,6 +133,33 @@
               Change
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete account modal -->
+
+  <div class="modal fade" id="deleteAccountModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger">Delete Account</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body text-center">
+          <p>Are you sure you want to delete your account?</p>
+          <p class="text-danger fw-bold">This action cannot be undone.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button class="btn btn-danger" id="confirmDeleteAccount">
+            Delete
+          </button>
         </div>
       </div>
     </div>
