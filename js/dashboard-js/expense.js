@@ -79,9 +79,18 @@ function initExpense() {
       userData.transactions.expenses.push(expense);
     }
 
+    const updatedExpenses =
+      userData.transactions?.expenses?.filter(
+        (item) => item.id !== confirmDeleteId,
+      ) || [];
+
     await updateData("users", loggedUser.id, {
-      transactions: userData.transactions,
+      transactions: {
+        income: userData.transactions?.income || [],
+        expenses: updatedExpenses,
+      },
     });
+
     showToast(
       editExpenseId
         ? "Expense Updated Successfully"
@@ -149,6 +158,12 @@ function initExpense() {
       loadExpenseCards();
     }
   });
+
+  document.getElementById("confirmDeleteExpenseBtn").onclick = function () {
+    if (confirmDeleteId !== null) {
+      handleDelete(confirmDeleteId);
+    }
+  };
   loadExpenseCards();
 }
 
@@ -260,6 +275,7 @@ function updateExpenseCards(expenses) {
 }
 
 let expenseSelectedMonth = new Date().getMonth();
+let confirmDeleteId = null;
 
 function renderExpenseTable(expenses) {
   const tbody = document.getElementById("expenseTableBody");
@@ -312,19 +328,15 @@ function renderExpenseTable(expenses) {
   });
 
   // Delete Event Listener
-  let deleteId = null;
 
   document.querySelectorAll(".delete-btn").forEach((btn) => {
     btn.onclick = function () {
-      deleteId = Number(this.dataset.id);
+      confirmDeleteId = Number(this.dataset.id);
 
       const modal = new bootstrap.Modal(
-        document.getElementById("confirmDeletion"),
+        document.getElementById("confirmDeletionExpense"),
       );
       modal.show();
-
-      const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
-      confirmDeleteBtn.onclick = () => handleDelete(deleteId);
     };
   });
 
@@ -335,14 +347,14 @@ function renderExpenseTable(expenses) {
     };
   });
 }
-async function handleDelete(deleteId) {
+async function handleDelete(confirmDeleteId) {
   try {
     const loggedUser = getLoggedUser();
 
     const userData = await getData(`users/${loggedUser.id}`);
 
     userData.transactions.expenses = userData.transactions.expenses.filter(
-      (item) => item.id !== deleteId,
+      (item) => item.id !== confirmDeleteId,
     );
 
     await updateData("users", loggedUser.id, {
@@ -350,7 +362,7 @@ async function handleDelete(deleteId) {
     });
 
     const modalEl = bootstrap.Modal.getInstance(
-      document.getElementById("confirmDeletion"),
+      document.getElementById("confirmDeletionExpense"),
     );
     modalEl.hide();
     showToast("Expense Deleted Successfully", "success");
