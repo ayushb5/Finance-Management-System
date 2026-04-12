@@ -148,6 +148,14 @@ function initIncome() {
       loadIncomeCards();
     }
   });
+  document.addEventListener("click", async function (e) {
+    if (e.target.id === "confirmDeleteBtn") {
+      if (deleteId !== null) {
+        await handleDeleteIncome(deleteId);
+        deleteId = null;
+      }
+    }
+  });
   loadIncomeCards();
 }
 
@@ -259,7 +267,8 @@ function updateIncomeCards(incomes) {
 }
 
 let incomeSelectedMonth = new Date().getMonth();
-
+let deleteId = null;
+let deleteModalInstance = null;
 function renderIncomeTable(incomes) {
   const tbody = document.getElementById("incomeTableBody");
   if (!tbody) return;
@@ -311,47 +320,45 @@ function renderIncomeTable(incomes) {
   });
 
   // Delete Event Listener
-  let deleteId = null;
 
   document.querySelectorAll(".delete-btn").forEach((btn) => {
     btn.onclick = function () {
       deleteId = Number(this.dataset.id);
 
-      const modal = new bootstrap.Modal(
-        document.getElementById("confirmDeletion"),
-      );
-      modal.show();
+      const modalElement = document.getElementById("confirmDeletionIncome");
 
-      const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
-      confirmDeleteBtn.onclick = () => handleDelete(deleteId);
+      deleteModalInstance = new bootstrap.Modal(modalElement);
+      deleteModalInstance.show();
     };
   });
 
   document.querySelectorAll(".edit-btn").forEach((btn) => {
     btn.onclick = function () {
       const id = Number(this.dataset.id);
-      handleUpdate(id);
+      handleUpdateIncome(id);
     };
   });
 }
-async function handleDelete(deleteId) {
+async function handleDeleteIncome(deleteId) {
   try {
     const loggedUser = getLoggedUser();
 
     const userData = await getData(`users/${loggedUser.id}`);
 
-    userData.transactions.income = userData.transactions.income.filter(
-      (item) => item.id !== deleteId,
-    );
+    const updatedIncome =
+      userData.transactions?.income.filter((item) => item.id !== deleteId) ||
+      [];
 
     await updateData("users", loggedUser.id, {
-      transactions: userData.transactions,
+      transactions: {
+        income: updatedIncome,
+        expenses: userData.transactions?.expenses || [],
+      },
     });
+    if (deleteModalInstance) {
+      deleteModalInstance.hide();
+    }
 
-    const modalEl = bootstrap.Modal.getInstance(
-      document.getElementById("confirmDeletion"),
-    );
-    modalEl.hide();
     showToast("Income Deleted Successfully", "success");
     loadIncomeCards();
   } catch (error) {
@@ -359,7 +366,7 @@ async function handleDelete(deleteId) {
   }
 }
 
-async function handleUpdate(id) {
+async function handleUpdateIncome(id) {
   editIncomeId = id;
   const loggedUser = getLoggedUser();
 
