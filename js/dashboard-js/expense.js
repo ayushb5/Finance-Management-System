@@ -149,7 +149,7 @@ function initExpense() {
     };
   });
 
-  // Select month for expense table view
+  // Select month for expense table View
   const dropdown = document.getElementById("monthDropdown");
 
   dropdown.addEventListener("change", function () {
