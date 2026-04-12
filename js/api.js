@@ -1,4 +1,4 @@
-const BASE_URL = "YOUR API";
+const BASE_URL = "Your API";
 
 // GET
 async function getData(endpoint) {
